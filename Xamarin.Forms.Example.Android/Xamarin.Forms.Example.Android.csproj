@@ -79,7 +79,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
@@ -90,5 +89,8 @@
       <Project>{6FC85EC2-9244-4EFF-A6C1-38D0774667FF}</Project>
       <Name>Xamarin.Forms.Example.Forms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\layout\" />
   </ItemGroup>
 </Project>

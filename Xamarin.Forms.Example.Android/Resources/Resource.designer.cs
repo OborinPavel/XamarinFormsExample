@@ -973,26 +973,23 @@ namespace Xamarin.Forms.Example.Android.Android
 			// aapt resource value: 0x7f070029
 			public const int list_item = 2131165225;
 			
-			// aapt resource value: 0x7f070040
-			public const int media_route_control_frame = 2131165248;
+			// aapt resource value: 0x7f07003f
+			public const int media_route_control_frame = 2131165247;
 			
-			// aapt resource value: 0x7f070041
-			public const int media_route_disconnect_button = 2131165249;
+			// aapt resource value: 0x7f070040
+			public const int media_route_disconnect_button = 2131165248;
+			
+			// aapt resource value: 0x7f07003c
+			public const int media_route_list = 2131165244;
 			
 			// aapt resource value: 0x7f07003d
-			public const int media_route_list = 2131165245;
+			public const int media_route_volume_layout = 2131165245;
 			
 			// aapt resource value: 0x7f07003e
-			public const int media_route_volume_layout = 2131165246;
-			
-			// aapt resource value: 0x7f07003f
-			public const int media_route_volume_slider = 2131165247;
+			public const int media_route_volume_slider = 2131165246;
 			
 			// aapt resource value: 0x7f070012
 			public const int middle = 2131165202;
-			
-			// aapt resource value: 0x7f07003c
-			public const int myButton = 2131165244;
 			
 			// aapt resource value: 0x7f070009
 			public const int never = 2131165193;
@@ -1180,19 +1177,16 @@ namespace Xamarin.Forms.Example.Android.Android
 			public const int abc_simple_decor = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int Main = 2130903064;
+			public const int mr_media_route_chooser_dialog = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int mr_media_route_chooser_dialog = 2130903065;
+			public const int mr_media_route_controller_dialog = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int mr_media_route_controller_dialog = 2130903066;
+			public const int mr_media_route_list_item = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int mr_media_route_list_item = 2130903067;
-			
-			// aapt resource value: 0x7f03001c
-			public const int support_simple_spinner_dropdown_item = 2130903068;
+			public const int support_simple_spinner_dropdown_item = 2130903067;
 			
 			static Layout()
 			{
