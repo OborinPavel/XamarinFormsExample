@@ -24,6 +24,13 @@ namespace Xamarin.Forms.Example
 				using (var stream = new StringReader (responseBody)) {
 					var serializer = new XmlSerializer (typeof(GeocoderObject));
 					var geocoderObject = serializer.Deserialize (stream);
+
+					try {
+						await Navigation.PushAsync (new MapPage ((geocoderObject as GeocoderObject).Results[0]));
+					}
+					catch (Exception ex) {
+						DisplayAlert ("Whoops", ex.Message, "OK");
+					}
 				}
 			} else if (sender == btnPaseJsonStatic) {
 				var responseBody = await GetResponseBody (jsonLabel.Text);
