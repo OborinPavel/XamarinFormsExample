@@ -11,7 +11,7 @@ using Android.OS;
 using Xamarin.Forms.Platform.Android;
 
 
-namespace Xamarin.Forms.Example.Android.Android
+namespace Xamarin.Forms.Example.Android
 {
 	[Activity (Label = "Xamarin.Forms.Example.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : AndroidActivity

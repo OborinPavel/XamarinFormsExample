@@ -6,7 +6,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{A5646BE9-B595-4641-8271-187ADF459C3A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Xamarin.Forms.Example.Android.Android</RootNamespace>
+    <RootNamespace>Xamarin.Forms.Example.Android</RootNamespace>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>

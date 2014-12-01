@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Xamarin.Forms.Example.Android.Android.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Xamarin.Forms.Example.Android.Resource", IsApplication=true)]
 
-namespace Xamarin.Forms.Example.Android.Android
+namespace Xamarin.Forms.Example.Android
 {
 	
 	

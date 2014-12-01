@@ -10,11 +10,11 @@ namespace Xamarin.Forms.Example
 			: this() {
 			var mapView = DependencyService.Get<IMapView> ();
 
-			slStack.Children.Add (mapView.MapView);
-
 			mapView.Address = geocoder.FormattedAddress;
 			mapView.Label = "geocoder";
 			mapView.Location = geocoder.Geometry.Location;
+
+			slStack.Children.Add (mapView.MapView);
 		}
 
 		public MapPage ()

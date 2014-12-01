@@ -1,9 +1,11 @@
 ﻿using System;
 using Xamarin.Forms.Maps;
+using Xamarin.Forms;
+using Xamarin.Forms.Example.Android;
 
-namespace Xamarin.Forms.Example.Android.Android
+[assembly: Dependency(typeof(MapViewAndroid))]
+namespace Xamarin.Forms.Example.Android
 {
-	[assembly: Dependency(typeof(MapViewAndroid))]
 	public class MapViewAndroid : IMapView
 	{
 		Location _location;
@@ -18,8 +20,13 @@ namespace Xamarin.Forms.Example.Android.Android
 			set {
 				_location = value;
 				var position = new Position (value.Lat, value.Long);
-				_map.MoveToRegion (new MapSpan (_map.VisibleRegion.Center, position.Latitude, position.Longitude));
-				_map.Pins.Add (new Pin { Type = PinType.Place, Position = position, Label = Label, Address = Address });
+				var span = new MapSpan (position, 0.01, 0.01);
+				_map.MoveToRegion (span);
+				_map.Pins.Add (new Pin { 
+					Type = PinType.Place, 
+					Position = position, 
+					Label = Label, 
+					Address = Address });
 			}
 		}
 
