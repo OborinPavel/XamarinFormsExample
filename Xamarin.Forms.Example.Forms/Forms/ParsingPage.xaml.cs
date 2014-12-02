@@ -25,22 +25,32 @@ namespace Xamarin.Forms.Example
 					var serializer = new XmlSerializer (typeof(GeocoderObject));
 					var geocoderObject = serializer.Deserialize (stream);
 
-					try {
-						await Navigation.PushAsync (new MapPage ((geocoderObject as GeocoderObject).Results[0]));
-					}
-					catch (Exception ex) {
-						DisplayAlert ("Whoops", ex.Message, "OK");
-					}
+					GoToMaps (geocoderObject);
 				}
 			} else if (sender == btnPaseJsonStatic) {
 				var responseBody = await GetResponseBody (jsonLabel.Text);
 				var geocoderObject = JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
+
+				GoToMaps (geocoderObject);
 			} else if (sender == btnParseJsonDynamically) {
 				var responseBody = await GetResponseBody (jsonLabel.Text);
 				dynamic geocderObject = JsonConvert.DeserializeObject<ExpandoObject> (responseBody);
 				DisplayAlert ("Success!", geocderObject.results [0].formatted_address, "OK");
 			} else {
 				return;
+			}
+		}
+
+		async void GoToMaps (object geocoderObject)
+		{
+			try {
+				var mapPage = DependencyService.Get<IMapView> ();
+				var geocoder = (geocoderObject as GeocoderObject).Results [0];
+				mapPage.AddPin (geocoder.Geometry.Location, "geocoder", geocoder.FormattedAddress);
+				await Navigation.PushAsync ((Page)mapPage);
+			}
+			catch (Exception ex) {
+				DisplayAlert ("Whoops", ex.Message, "OK");
 			}
 		}
 
