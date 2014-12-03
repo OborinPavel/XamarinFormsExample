@@ -13,7 +13,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
-    <AssemblyName>Xamarin.Forms.Example.Android.Android</AssemblyName>
+    <AssemblyName>Xamarin.Forms.Example.Android</AssemblyName>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
@@ -70,20 +70,12 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.1.3.0.6275-pre1\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Maps.Android">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.0.6275-pre1\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\packages\Xamarin.Forms.Maps.1.3.0.6275-pre1\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\GoogleMapAndroid.xaml.cs">
-      <DependentUpon>GoogleMapAndroid.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Renderers\GoogleMapsViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -105,11 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\GoogleMapAndroid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
+    <Folder Include="Renderers\" />
   </ItemGroup>
 </Project>

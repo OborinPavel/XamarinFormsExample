@@ -7,7 +7,7 @@
     <ProjectGuid>{6FC85EC2-9244-4EFF-A6C1-38D0774667FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Forms.Example</RootNamespace>
-    <AssemblyName>Xamarin.Forms.Example.Android</AssemblyName>
+    <AssemblyName>Xamarin.Forms.Example.Forms</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
   </PropertyGroup>
@@ -42,6 +42,10 @@
     <Compile Include="Utils\HttpExtensions.cs" />
     <Compile Include="Utils\HttpMethod.cs" />
     <Compile Include="Interfaces\IMapView.cs" />
+    <Compile Include="Views\GoogleMapsView.cs" />
+    <Compile Include="Forms\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -78,12 +82,16 @@
     <Folder Include="Models\" />
     <Folder Include="Utils\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ParsingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

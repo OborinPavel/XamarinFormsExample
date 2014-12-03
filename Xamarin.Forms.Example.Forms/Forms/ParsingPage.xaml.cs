@@ -25,13 +25,13 @@ namespace Xamarin.Forms.Example
 					var serializer = new XmlSerializer (typeof(GeocoderObject));
 					var geocoderObject = serializer.Deserialize (stream);
 
-					GoToMaps (geocoderObject);
+					await Navigation.PushAsync (new MapPage ());
 				}
 			} else if (sender == btnPaseJsonStatic) {
 				var responseBody = await GetResponseBody (jsonLabel.Text);
 				var geocoderObject = JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
 
-				GoToMaps (geocoderObject);
+				await Navigation.PushAsync (new MapPage ());
 			} else if (sender == btnParseJsonDynamically) {
 				var responseBody = await GetResponseBody (jsonLabel.Text);
 				dynamic geocderObject = JsonConvert.DeserializeObject<ExpandoObject> (responseBody);
