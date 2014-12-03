@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace Xamarin.Forms.Example
 {
-	[JsonObject("GeocodeResponse")]
+	[JsonObject]
 	[XmlRootAttribute("GeocodeResponse", IsNullable = false)]
 	public class GeocoderObject
 	{
-		[JsonProperty("result")]
+		[JsonProperty("results")]
 		[XmlElement("result")]
 		public List<Result> Results { get; set; }
 
