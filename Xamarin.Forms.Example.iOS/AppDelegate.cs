@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 using Xamarin.Forms;
+using Google.Maps;
 
 namespace Xamarin.Forms.Example.iOS
 {
@@ -17,6 +18,8 @@ namespace Xamarin.Forms.Example.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			Forms.Init ();
+
+			MapServices.ProvideAPIKey ("AIzaSyD3HDfxtGtlGTlSJXQItgSnkiGSoWAVhCI");
 
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			

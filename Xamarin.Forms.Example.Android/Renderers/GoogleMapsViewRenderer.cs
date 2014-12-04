@@ -27,7 +27,6 @@ namespace Xamarin.Forms.Example.Android
 
 			SetNativeControl (mapView);
 		}
-
 	}
 }
 

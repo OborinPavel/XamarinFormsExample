@@ -20,7 +20,7 @@ namespace Xamarin.Forms.Example
 		async void ParseClicked (object sender, EventArgs args)
 		{
 			if (sender == btnParseXml) {
-				var responseBody = await GetResponseBody (xmlLabel.Text);
+				var responseBody = await GetResponseBodyAsync (xmlLabel.Text);
 				using (var stream = new StringReader (responseBody)) {
 					var serializer = new XmlSerializer (typeof(GeocoderObject));
 					var geocoderObject = serializer.Deserialize (stream);
@@ -28,15 +28,24 @@ namespace Xamarin.Forms.Example
 					await Navigation.PushAsync (new MapPage ());
 				}
 			} else if (sender == btnPaseJsonStatic) {
-				var responseBody = await GetResponseBody (jsonLabel.Text);
-				var geocoderObject = JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
+				GetResponseBodyAsync (jsonLabel.Text)
+					.ContinueWith(async t => {
+						var responseBody = await t;
+						return JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
+					}).ContinueWith(async t => {
+						var geocoder = await t;
+						await Navigation.PushAsync (new MapPage ());
+					}, TaskScheduler.FromCurrentSynchronizationContext());
 
-				await Navigation.PushAsync (new MapPage ());
 			} else if (sender == btnParseJsonDynamically) {
-				var responseBody = await GetResponseBody (jsonLabel.Text);
+				var responseBody = await GetResponseBodyAsync (jsonLabel.Text);
 				dynamic geocoderObject = JsonConvert.DeserializeObject(responseBody);
+				try {
 				var address = geocoderObject["results"][0]["formatted_address"];
 				DisplayAlert ("Success!", address.ToString(), "OK");
+				} catch (Exception ex) {
+					DisplayAlert ("Whoops", ex.Message, "OK");
+				}
 			} else {
 				return;
 			}
@@ -55,7 +64,7 @@ namespace Xamarin.Forms.Example
 			}
 		}
 
-		private async Task<string> GetResponseBody (string requestBody)
+		private async Task<string> GetResponseBodyAsync (string requestBody)
 		{
 			var request = WebRequest.Create (requestBody); //@"http://some-server.com/file.xml;
 			request.ContentType = "text/xml/json";
@@ -64,7 +73,8 @@ namespace Xamarin.Forms.Example
 			using (var response = await request.GetResponseAsync () as HttpWebResponse) {
 				if (response.StatusCode == HttpStatusCode.OK) {
 					using (StreamReader reader = new StreamReader (response.GetResponseStream ())) {
-						return reader.ReadToEnd ();     
+						var body = reader.ReadToEnd ();     
+						return body.ToString();
 					}
 				} else {
 					return string.Empty;
@@ -72,7 +82,5 @@ namespace Xamarin.Forms.Example
 			}
 		}
 	}
-
-
 }
 
