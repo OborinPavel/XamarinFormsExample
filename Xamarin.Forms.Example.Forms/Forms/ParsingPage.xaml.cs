@@ -34,8 +34,9 @@ namespace Xamarin.Forms.Example
 				await Navigation.PushAsync (new MapPage ());
 			} else if (sender == btnParseJsonDynamically) {
 				var responseBody = await GetResponseBody (jsonLabel.Text);
-				dynamic geocderObject = JsonConvert.DeserializeObject<ExpandoObject> (responseBody);
-				DisplayAlert ("Success!", geocderObject.results [0].formatted_address, "OK");
+				dynamic geocoderObject = JsonConvert.DeserializeObject(responseBody);
+				var address = geocoderObject["results"][0]["formatted_address"];
+				DisplayAlert ("Success!", address.ToString(), "OK");
 			} else {
 				return;
 			}
