@@ -18,6 +18,7 @@ namespace Xamarin.Forms.Example
 		protected override void OnDisappearing ()
 		{
 			mapView.ClearPins ();
+			mapView.UnsubscribeAllEvents ();
 		}
 	}
 }

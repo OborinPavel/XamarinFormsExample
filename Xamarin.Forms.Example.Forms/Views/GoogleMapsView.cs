@@ -16,6 +16,18 @@ namespace Xamarin.Forms.Example
 			if (ClearPinsEvent != null)
 				ClearPinsEvent (this, new EventArgs ());
 		}
+
+		public void UnsubscribeAllEvents() {
+			foreach(Delegate d in AddPinEvent.GetInvocationList())
+			{
+				AddPinEvent -= (EventHandler<PinEventArgs>)d;
+			}
+
+			foreach(Delegate d in ClearPinsEvent.GetInvocationList())
+			{
+				ClearPinsEvent -= (EventHandler)d;
+			}
+		}
 	}
 
 	public class PinEventArgs:EventArgs {
