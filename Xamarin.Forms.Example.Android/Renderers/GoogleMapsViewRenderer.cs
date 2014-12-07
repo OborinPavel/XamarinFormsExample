@@ -7,6 +7,7 @@ using Android.Gms.Maps.Model;
 using Xamarin.Forms.Example.Android;
 using Android.App;
 using Android.OS;
+using System.Threading.Tasks;
 
 [assembly: ExportRenderer (typeof(GoogleMapsView), typeof(GoogleMapsViewRenderer))]
 namespace Xamarin.Forms.Example.Android
@@ -20,17 +21,19 @@ namespace Xamarin.Forms.Example.Android
 			base.OnElementChanged (e);
 			if (e.OldElement != null || this.Element == null)
 				return;
-
-			if (e.NewElement is GoogleMapsView) {
-				var mapView = (GoogleMapsView)e.NewElement;
-				mapView.AddPinEvent += HandleAddPinEvent;
-				mapView.ClearPinsEvent += HandleClearPinsEvent;
-			}
+				
+			var mapView = (GoogleMapsView)e.NewElement;
+			mapView.AddPinEvent += HandleAddPinEvent;
+			mapView.ClearPinsEvent += HandleClearPinsEvent;
 
 			GoogleMapOptions options = new GoogleMapOptions ();
-			options.InvokeCamera (new CameraPosition (new LatLng (0, 0), 1, 0, 0));          
+			options.InvokeCamera (new CameraPosition (new LatLng (0, 0), 1, 0, 0));
+			options.InvokeZoomControlsEnabled (false);
+			options.InvokeTiltGesturesEnabled (false);
+			options.InvokeCompassEnabled (false);
 			_mapView = new MapView (Forms.Context, options);
-			_mapView.OnCreate (new Bundle());
+			_mapView.OnCreate (new Bundle ());
+			MapsInitializer.Initialize (Forms.Context);
 			_mapView.OnResume ();
 
 			SetNativeControl (_mapView);
@@ -43,16 +46,14 @@ namespace Xamarin.Forms.Example.Android
 
 		void HandleAddPinEvent (object sender, PinEventArgs e)
 		{
-			LatLng locCurrent = new LatLng (e.Location.Lat, e.Location.Long);
-			var cameraPosition = new CameraPosition (locCurrent, _mapView.Map.CameraPosition.Zoom, _mapView.Map.CameraPosition.Tilt, _mapView.Map.CameraPosition.Bearing);
-
-			MarkerOptions markerOptions = new MarkerOptions ();
-			markerOptions.SetPosition (locCurrent);
-			markerOptions.SetTitle (e.Label + System.Environment.NewLine + e.Address);
-			_mapView.Map.AddMarker (markerOptions);
-
-			_mapView.Map.MoveCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition));
-
+			(Forms.Context as Activity).RunOnUiThread (() => {
+				LatLng locCurrent = new LatLng (e.Location.Lat, e.Location.Long);
+				MarkerOptions markerOptions = new MarkerOptions ();
+				markerOptions.SetPosition (locCurrent);
+				markerOptions.SetTitle (e.Label + System.Environment.NewLine + e.Address);
+				_mapView.Map.AddMarker (markerOptions);
+				_mapView.Map.AnimateCamera (CameraUpdateFactory.NewLatLngZoom (locCurrent, 14));
+			});
 		}
 	}
 }
