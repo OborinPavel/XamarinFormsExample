@@ -11,8 +11,8 @@ namespace Xamarin.Forms.Example
 			InitializeComponent ();
 		}
 
-		public void AddPin(GeocoderObject pin) {
-			mapView.AddPin (pin.Results [0].Geometry.Location, "geocoder", pin.Results [0].FormattedAddress);
+		public void AddPin(Location location, string label, string address) {
+			mapView.AddPin (location, label, address);
 		}
 
 		protected override void OnDisappearing ()
