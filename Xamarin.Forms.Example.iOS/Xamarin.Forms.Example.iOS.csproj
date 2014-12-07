@@ -140,9 +140,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Renderers\" />
-  </ItemGroup>
-  <ItemGroup>
     <XamarinComponentReference Include="googlemapsios">
       <Version>1.9.0.1</Version>
       <Visible>False</Visible>

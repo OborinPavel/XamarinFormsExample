@@ -20,47 +20,39 @@ namespace Xamarin.Forms.Example
 		async void ParseClicked (object sender, EventArgs args)
 		{
 			if (sender == btnParseXml) {
-				var responseBody = await GetResponseBodyAsync (xmlLabel.Text);
-				using (var stream = new StringReader (responseBody)) {
-					var serializer = new XmlSerializer (typeof(GeocoderObject));
-					var geocoderObject = serializer.Deserialize (stream);
-
-					await Navigation.PushAsync (new MapPage ());
-				}
+				GetResponseBodyAsync (xmlLabel.Text)
+					.ContinueWith (async t => {
+						var responseBody = await t;
+						using (var stream = new StringReader (responseBody)) {
+							var serializer = new XmlSerializer (typeof(GeocoderObject));
+							return serializer.Deserialize (stream);
+						}
+					}).ContinueWith (async t => {
+							var geocoder = await t.Result;
+							await Navigation.PushAsync (new MapPage ());
+					}, TaskScheduler.FromCurrentSynchronizationContext ());
 			} else if (sender == btnPaseJsonStatic) {
 				GetResponseBodyAsync (jsonLabel.Text)
 					.ContinueWith(async t => {
 						var responseBody = await t;
 						return JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
 					}).ContinueWith(async t => {
-						var geocoder = await t;
-						await Navigation.PushAsync (new MapPage ());
+						var geocoder = await t.Result;
+						var mapPage = new MapPage();
+						await Navigation.PushAsync (mapPage);
+						mapPage.AddPin(geocoder);
 					}, TaskScheduler.FromCurrentSynchronizationContext());
 
 			} else if (sender == btnParseJsonDynamically) {
-				var responseBody = await GetResponseBodyAsync (jsonLabel.Text);
-				dynamic geocoderObject = JsonConvert.DeserializeObject(responseBody);
-				try {
-				var address = geocoderObject["results"][0]["formatted_address"];
-				DisplayAlert ("Success!", address.ToString(), "OK");
-				} catch (Exception ex) {
-					DisplayAlert ("Whoops", ex.Message, "OK");
-				}
+				GetResponseBodyAsync (jsonLabel.Text)
+					.ContinueWith(async t => {
+						var responseBody = await t;
+						dynamic geocoderObject = JsonConvert.DeserializeObject(responseBody);
+						var address = geocoderObject["results"][0]["formatted_address"];
+						DisplayAlert ("Success!", address.ToString(), "OK");
+					}, TaskScheduler.FromCurrentSynchronizationContext());
 			} else {
 				return;
-			}
-		}
-
-		async void GoToMaps (object geocoderObject)
-		{
-			try {
-				var mapPage = DependencyService.Get<IMapView> ();
-				var geocoder = (geocoderObject as GeocoderObject).Results [0];
-				mapPage.AddPin (geocoder.Geometry.Location, "geocoder", geocoder.FormattedAddress);
-				await Navigation.PushAsync ((Page)mapPage);
-			}
-			catch (Exception ex) {
-				DisplayAlert ("Whoops", ex.Message, "OK");
 			}
 		}
 

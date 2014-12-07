@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Xamarin.Forms.Example
 {
-	public class App
+	public class App 
 	{
 		public static Page GetMainPage ()
 		{	
