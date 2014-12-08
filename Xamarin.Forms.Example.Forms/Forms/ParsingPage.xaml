@@ -6,7 +6,6 @@
 			<Button x:Name="btnParseXml" Text="Parse xml" Clicked="ParseClicked"/>
 			<Label x:Name="jsonLabel" Text="http://maps.googleapis.com/maps/api/geocode/json?address=250+Swanston+St,+Melbourne+VIC+3000&amp;sensor=false" />
 			<Button x:Name="btnPaseJsonStatic" Text="Parse JSON" Clicked="ParseClicked"/>
-			<Button x:Name="btnParseJsonDynamically" Text="Parse JSON dynamic" Clicked="ParseClicked"/>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

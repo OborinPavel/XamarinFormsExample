@@ -39,18 +39,6 @@ namespace Xamarin.Forms.Example
 					var geocoder = JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
 					mapPage.AddPin (geocoder.Results [0].Geometry.Location, "geocoder", geocoder.Results [0].FormattedAddress);
 				});
-
-			} else if (sender == btnParseJsonDynamically) {
-				GetResponseBodyAsync (jsonLabel.Text)
-					.ContinueWith (async t => {
-					var responseBody = await t;
-					dynamic geocoderObject = JsonConvert.DeserializeObject (responseBody);
-					var location = new Location { Lat = double.Parse (geocoderObject ["results"] [0] ["geometry"] ["location"] ["lat"].ToString ()),
-						Long = double.Parse (geocoderObject ["results"] [0] ["geometry"] ["location"] ["lng"].ToString ())
-					};
-					var address = geocoderObject ["results"] [0] ["formatted_address"].ToString ();
-					mapPage.AddPin (location, "geocoder", address);
-				});
 			} else {
 				return;
 			}
