@@ -42,7 +42,7 @@ namespace Xamarin.Forms.Example.iOS
 			InvokeOnMainThread (() => {
 				var location = new CLLocationCoordinate2D(e.Location.Lat, e.Location.Long);
 
-				var marker = new Marker() {
+				new Marker() {
 					Title = e.Label,
 					Snippet = e.Address,
 					Position = location,

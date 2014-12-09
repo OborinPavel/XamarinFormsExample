@@ -23,7 +23,7 @@ namespace Xamarin.Forms.Example
 			await Navigation.PushAsync (mapPage);
 
 			if (sender == btnParseXml) {
-				GetResponseBodyAsync (xmlLabel.Text)
+				await GetResponseBodyAsync (xmlLabel.Text)
 					.ContinueWith (async t => {
 					var responseBody = await t;
 					using (var stream = new StringReader (responseBody)) {
@@ -33,7 +33,7 @@ namespace Xamarin.Forms.Example
 					}
 				});
 			} else if (sender == btnPaseJsonStatic) {
-				GetResponseBodyAsync (jsonLabel.Text)
+				await GetResponseBodyAsync (jsonLabel.Text)
 					.ContinueWith (async t => {
 					var responseBody = await t;
 					var geocoder = JsonConvert.DeserializeObject<GeocoderObject> (responseBody);
