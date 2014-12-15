@@ -19,6 +19,7 @@ namespace Xamarin.Forms.Example
 
 		async void ParseClicked (object sender, EventArgs args)
 		{
+			try {
 			var mapPage = new MapPage ();
 			await Navigation.PushAsync (mapPage);
 
@@ -41,6 +42,9 @@ namespace Xamarin.Forms.Example
 				});
 			} else {
 				return;
+				}
+			}catch (Exception ex) {
+				DisplayAlert ("whoops", ex.Message, "OK");
 			}
 		}
 
