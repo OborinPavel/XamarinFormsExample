@@ -16,7 +16,7 @@ This is a simple project to introduce the Xamrin.Forms technology. By this proje
 
 -----------------
 Please follow these steps to build and run:
-  1. Download and install Xamarin Studio form http://xamarin.com
+  1. Download and install Xamarin Studio from http://xamarin.com
   2. Create an account at Xamarin portal
   3. Login with the account into the Xamarin Studio (some features are unavailable without logging in)
   4. Clone this GitHub project
@@ -28,7 +28,7 @@ Please follow these steps to build and run:
   7. Select a target project (iOS or Android)
   8. Set as a startup project from the context menu
   9. Select a device on the toolbar and run
-  10. Obtain an evaluation license when prompted
+  10. Obtain an evaluation license when prompted. [Get evaluation license help](http://developer.xamarin.com/guides/cross-platform/getting_started/beginning_a_xamarin_trial/)
   
 ------------------
 Android users can try Xamarin Android Player form http://xamarin.com/android-player. To install Google Play Services follow instructions from the https://university.xamarin.com/resources/how-to-install-google-play-on-android-emulator
